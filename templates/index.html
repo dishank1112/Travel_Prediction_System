@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 150vh;
+            background: url('your-background-image.jpg') no-repeat center center fixed;
+            /* Add your background image URL */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: brown;
+        }
+
+        h1 {
+            font-size: 5em;
+            /* Increased title size */
+            animation: fadeIn 1s;
+            /* Animation */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.8em;
+            color: black;
+            background-color: cyan;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #00bfff;
+            /* Slightly darker cyan */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Welcome to Travel Booking Prediction</h1>
+        <button onclick="window.location.href='/landing'">Predict</button>
+    </div>
+</body>
+
+</html>

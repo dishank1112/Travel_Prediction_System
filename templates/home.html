@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking Prediction</title>
+    <style>
+        body {
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            background-color: #ffebee;
+           
+            margin: 0;
+            padding: 0;
+            font-size: 1.2em;
+          
+        }
+        .container {
+            font-weight: bold;
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .header {
+            font-weight: bold;
+            text-align: center;
+            padding: 30px;
+            /* Increased padding */
+            background: cyan;
+            /* Cyan background */
+            color: black;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            /* Doubled title size */
+        }
+
+        .form-group {
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            font-weight: bold;
+            width: 48%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: cyan;
+            /* Cyan focus border */
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            font-size: 3em;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: cyan;
+            /* Cyan button background */
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: #00bcd4;
+            /* Darker cyan on hover */
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 2.6em;
+        }
+        .booked {
+            color: green;
+            /* Green color for "Book" */
+        }
+
+        .not-booked {
+            color: red;
+            /* Red color for "Not Book" */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Travel Booking Prediction</h1>
+        </div>
+
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <div class="form-group">
+                <input type="text" name="Age" placeholder="Age" required="required" />
+                <input type="text" name="TypeofContact" placeholder="TypeofContact" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="CityTier" placeholder="CityTier" required="required" />
+                <input type="text" name="DurationOfPitch" placeholder="DurationOfPitch" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="Occupation" placeholder="Occupation" required="required" />
+                <input type="text" name="Gender" placeholder="Gender" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="NumberOfFollowups" placeholder="NumberOfFollowups" required="required" />
+                <input type="text" name="ProductPitched" placeholder="ProductPitched" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="PreferredPropertyStar" placeholder="PreferredPropertyStar"
+                    required="required" />
+                <input type="text" name="MaritalStatus" placeholder="MaritalStatus" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="NumberOfTrips" placeholder="NumberOfTrips" required="required" />
+                <input type="text" name="Passport" placeholder="Passport" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="PitchSatisfactionScore" placeholder="PitchSatisfactionScore"
+                    required="required" />
+                <input type="text" name="OwnCar" placeholder="OwnCar" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="Designation" placeholder="Designation" required="required" />
+                <input type="text" name="MonthlyIncome" placeholder="MonthlyIncome" required="required" />
+            </div>
+            <div class="form-group">
+                <input type="text" name="TotalVisiting" placeholder="TotalVisiting" required="required" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict...</button>
+        </form>
+
+        <div class="result fade-in">
+            {% if results is not none %}
+            {% if results == 1 %}
+            <span class="booked">Book</span>
+            {% else %}
+            <span class="not-booked">Not Book</span>
+            {% endif %}
+            {% else %}
+            <h2>No result yet</h2>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for result display
+        document.addEventListener('DOMContentLoaded', function () {
+            const result = document.querySelector('.result');
+            if (result.innerHTML.trim() !== '') {
+                result.classList.add('fade-in');
+            }
+        });
+    </script>
+</body>
+</html>
